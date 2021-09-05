@@ -34,8 +34,8 @@
       } */
 
       canvas {
-        border: 1px solid;
-        /* margin: auto; */
+        /* border: 1px solid; */
+        margin: 150px auto 50px;
       }
 
       /* controllers styling */
@@ -43,7 +43,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 100px;
       }
 
       #sound,
@@ -104,20 +103,25 @@
             alt=""
           />
         </button>
+
+        <audio id="audio" src="./assets/flute_music.mp3"></audio>
       </div>
     </div>
     <script>
       let canvas = document.getElementById("canvas-bars");
       let context = canvas.getContext("2d");
-      canvas.width = window.innerWidth - 100;
+      canvas.width = 1200;
       canvas.height = 200;
       let btn_icon = document.getElementById("ctrl-icon");
       let play_pause = document.getElementById("play-pause");
-      let audio = new Audio();
-      audio.src = "./assets/flute_music.mp3";
+      //   let audio = new Audio();
+      //   audio.src = "./assets/flute_music.mp3";
+      let audio = document.getElementById("audio");
       let isPlaying = false;
-      var audio_duration = 0;
+      var audio_duration = audio.duration;
 
+ 
+      console.log(audio_duration);
       var width = 5;
       var height = [];
       var X = 5;
@@ -135,12 +139,19 @@
         context.closePath();
         X = X + 10;
       }
-      //   };
-      context.fillStyle = "red";
+
       function fillBar(val) {
+        context.fillStyle = "red";
         var length = val;
         X = 5;
         for (let i = 0; i < length; i++) {
+          context.beginPath();
+          context.fillRect(X, Y[i], width, height[i]);
+          context.closePath();
+          X = X + 10;
+        }
+        context.fillStyle = "grey";
+        for (let i = length; i <= 130; i++) {
           context.beginPath();
           context.fillRect(X, Y[i], width, height[i]);
           context.closePath();
@@ -150,7 +161,8 @@
 
       canvas.addEventListener("click", jumpOnCanvas);
       function jumpOnCanvas(e) {
-        console.log(e);
+        console.log(Math.round(e.layerX / 10));
+        fillBar(Math.round(e.layerX / 10));
       }
       // fillBar(100);
 
