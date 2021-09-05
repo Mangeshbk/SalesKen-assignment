@@ -104,7 +104,9 @@
           />
         </button>
 
-        <audio id="audio" src="./assets/flute_music.mp3"></audio>
+        <audio id="audio">
+          <source src="./assets/flute_music.mp3" type="audio/mpeg" />
+        </audio>
       </div>
     </div>
     <script>
@@ -118,17 +120,19 @@
       //   audio.src = "./assets/flute_music.mp3";
       let audio = document.getElementById("audio");
       let isPlaying = false;
-      var audio_duration = audio.duration;
+      //   var audio_duration;
+      //   window.addEventListener("load", () => {
+      //     audio_duration = audio.duration;
+      //   });
+      //   console.log(audio_duration);
 
- 
-      console.log(audio_duration);
       var width = 5;
       var height = [];
       var X = 5;
       var Y = [];
 
       for (let i = 0; i <= 130; i++) {
-        Y.push(Math.floor(Math.random() * 30) + 10);
+        Y.push(Math.floor(Math.random() * 50) + 10);
         height.push(Math.floor(Math.random() * 100) + 60);
       }
 
@@ -141,9 +145,10 @@
       }
 
       function fillBar(val) {
-        context.fillStyle = "red";
+        console.log(val);
         var length = val;
         X = 5;
+        context.fillStyle = "red";
         for (let i = 0; i < length; i++) {
           context.beginPath();
           context.fillRect(X, Y[i], width, height[i]);
@@ -160,69 +165,68 @@
       }
 
       canvas.addEventListener("click", jumpOnCanvas);
+
       function jumpOnCanvas(e) {
-        console.log(Math.round(e.layerX / 10));
-        fillBar(Math.round(e.layerX / 10));
+        change_value = Math.round(e.layerX / 10);
+        audio.currentTime = change_value;
+        console.log(change_value);
+        fillBar(change_value);
       }
-      // fillBar(100);
-
-      //   //creating canvas bars
-      //   audio.onloadedmetadata = async function () {
-      //     audio_duration = await audio.duration;
-      //     //console.log(audio_duration);
-
-      //     for (let i = 0; i <= audio_duration; i++) {
-      //       var canvasBar = document.createElement("canvas");
-      //       canvasBar.setAttribute("class", `canvas-bar${i}`);
-      //       canvasBar.setAttribute("data-id", `${i}`);
-      //       var context = canvasBar.getContext("2d");
-      //       canvasBar.style.width = "25px";
-      //       var random = Math.floor(Math.random() * 140);
-      //       var randomTop = Math.floor(Math.random() * 10);
-      //       context.fillStyle = "#E1E1E2";
-      //       context.fillRect(0, randomTop, 150, random); //(l, t, w, hig)
-
-      //       bars.appendChild(canvasBar);
-      //     }
-      //   };
-
-      //   var get_duration = document.querySelector("#canvas-bars");
-
-      //   let query;
-      //   get_duration.addEventListener("click", (e) => {
-      //     const { dataset } = e.target;
-      //     query = dataset.id;
-      //     console.log(query);
-      //   });
 
       // play pause contolling function
-      play_pause.addEventListener("click", togglePlay);
+      play_pause.addEventListener("click", playAudio);
 
       var changingLength = 0;
       var interval;
-      function togglePlay() {
-        isPlaying ? audio.pause() : audio.play();
-        if (!isPlaying) {
+      function playAudio() {
+        let audio = document.getElementById("audio");
+        if (interval == undefined) {
+          audio.play();
+          btn_icon.src =
+            "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/56573/pause-button-emoji-clipart-xl.png";
+
           interval = setInterval(() => {
             fillBar(changingLength);
             changingLength++;
           }, 1000);
+          console.log("play");
         } else {
+          audio.pause();
+          console.log("pause");
+          btn_icon.src =
+            "https://icon-library.com/images/android-triangle-icon/android-triangle-icon-7.jpg";
           clearInterval(interval);
+
+          interval = undefined;
         }
       }
+      //   function togglePlay() {
+      //     isPlaying ? audio.pause() : audio.play();
+      //     if (!isPlaying) {
+      //       fillBar(changingLength);
+      //       interval = setInterval(() => {
+      //         fillBar(changingLength);
+      //         changingLength++;
+      //       }, 1000);
+      //     } else {
+      //       clearInterval(interval);
+      //     }
+      //   }
+      //   var time;
+      //   audio.onplaying = function () {
+      //     isPlaying = true;
+      //     //audio.currentTime = change_value;
+      //     console.log(audio.currentTime);
+      //     console.log((time = change_value));
+      //     btn_icon.src =
+      //       "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/56573/pause-button-emoji-clipart-xl.png";
+      //   };
+      //   audio.onpause = function () {
+      //     isPlaying = false;
 
-      audio.onplaying = function () {
-        isPlaying = true;
-        btn_icon.src =
-          "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/56573/pause-button-emoji-clipart-xl.png";
-      };
-      audio.onpause = function () {
-        isPlaying = false;
-
-        btn_icon.src =
-          "https://icon-library.com/images/android-triangle-icon/android-triangle-icon-7.jpg";
-      };
+      //     btn_icon.src =
+      //       "https://icon-library.com/images/android-triangle-icon/android-triangle-icon-7.jpg";
+      //   };
     </script>
   </body>
 </html>
