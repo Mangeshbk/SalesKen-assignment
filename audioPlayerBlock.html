@@ -23,6 +23,13 @@
         height: 600px;
         border: 1px solid;
         margin: 100px auto;
+        display: flex;
+        justify-content: space-around;
+        /* align-items: center; */
+      }
+
+      #canvas-bars canvas {
+        margin-top: 50;
       }
 
       /* controllers styling */
@@ -96,8 +103,28 @@
       let btn_icon = document.getElementById("ctrl-icon");
       let play_pause = document.getElementById("play-pause");
       let audio = new Audio();
-      audio.src = "../assets/flute_music.mp3";
+      audio.src = "./assets/flute_music.mp3";
       let isPlaying = false;
+      var audio_duration = 0;
+
+      //creating canvas bars
+      audio.onloadedmetadata = async function () {
+        audio_duration = await audio.duration;
+        //console.log(audio_duration);
+
+        for (let i = 0; i <= audio_duration; i++) {
+          var canvasBar = document.createElement("canvas");
+          canvasBar.setAttribute("class", `canvas-bar${i}`);
+          var context = canvasBar.getContext("2d");
+          canvasBar.style.width = "25px";
+          var random = Math.floor(Math.random() * 140);
+          var randomTop = Math.floor(Math.random() * 10);
+          context.fillStyle = "#E1E1E2";
+          context.fillRect(0, randomTop, 150, random); //(l, t, w, hig)
+
+          bars.appendChild(canvasBar);
+        }
+      };
 
       // play pause contolling function
       play_pause.addEventListener("click", togglePlay);
