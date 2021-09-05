@@ -5,8 +5,117 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>audioPlayerBlock</title>
+    <!-- <link rel="stylesheet" href=""> -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #main {
+        width: 90vw;
+        /* max-width: 1300px; */
+        margin: auto;
+      }
+
+      /* canvas bars styling */
+      #canvas-bars {
+        width: 100%;
+        height: 600px;
+        border: 1px solid;
+        margin: 100px auto;
+      }
+
+      /* controllers styling */
+      #audio-controllers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #sound,
+      #forward {
+        border: 1px solid #a4b7bb;
+        border-radius: 50px;
+        width: 150px;
+        height: 100px;
+        background: transparent;
+        padding: 5px 15px;
+        cursor: pointer;
+      }
+
+      #sound img,
+      #forward img {
+        width: 50px;
+        height: 50px;
+      }
+      #play-pause {
+        border: 1px solid #a4b7bb;
+        border-radius: 10px;
+        background: transparent;
+        border-radius: 100px;
+        width: 250px;
+        height: 150px;
+        cursor: pointer;
+      }
+      #play-pause img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
   </head>
   <body>
-      
+    <div id="main">
+      <!-- creating canvas bars -->
+      <div id="canvas-bars"></div>
+
+      <!-- creating button controllers -->
+      <div id="audio-controllers">
+        <button id="sound">
+          <img
+            src="https://aventriahealth.com/wp-content/uploads/2019/08/audio-icon.png"
+            alt=""
+          />
+        </button>
+        <button id="play-pause">
+          <img
+            id="ctrl-icon"
+            src="https://icon-library.com/images/android-triangle-icon/android-triangle-icon-7.jpg"
+            alt=""
+          />
+        </button>
+        <button id="forward">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRKt0p6Ee0iYOFg9HxChZ-2eIh6EmC8R3wog&usqp=CAU"
+            alt=""
+          />
+        </button>
+      </div>
+    </div>
+    <script>
+      let bars = document.getElementById("canvas-bars");
+      let btn_icon = document.getElementById("ctrl-icon");
+      let play_pause = document.getElementById("play-pause");
+      let audio = new Audio();
+      audio.src = "../assets/flute_music.mp3";
+      let isPlaying = false;
+
+      // play pause contolling function
+      play_pause.addEventListener("click", togglePlay);
+
+      function togglePlay() {
+        isPlaying ? audio.pause() : audio.play();
+      }
+
+      audio.onplaying = function () {
+        isPlaying = true;
+        btn_icon.src =
+          "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/56573/pause-button-emoji-clipart-xl.png";
+      };
+      audio.onpause = function () {
+        isPlaying = false;
+        btn_icon.src =
+          "https://icon-library.com/images/android-triangle-icon/android-triangle-icon-7.jpg";
+      };
+    </script>
   </body>
 </html>
