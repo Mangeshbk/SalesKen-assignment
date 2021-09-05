@@ -15,7 +15,7 @@ body {
     margin: 150px auto 50px;
   }
 
-  /* controllers styling */
+  /* button controllers styling */
   #audio-controllers {
     display: flex;
     align-items: center;
