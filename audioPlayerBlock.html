@@ -108,12 +108,6 @@
       //   audio.src = "./assets/flute_music.mp3";
       let audio = document.getElementById("audio");
       let isPlaying = false;
-      //   var audio_duration;
-      //   window.addEventListener("load", () => {
-      //     audio_duration = audio.duration;
-      //   });
-      //   console.log(audio_duration);
-
       var width = 5;
       var height = [];
       var X = 5;
@@ -210,8 +204,16 @@
         changingLength = change_value;
         fillBar(change_value);
 
+        // hover circular effet onClicking;
 
-        // hover circle effet onClicking;
+        // setTimeout(() => {
+        //   context.beginPath();
+        //   context.arc(e.offsetX, e.offsetY, 30, 0, Math.PI * 2);
+        //   context.strokeStyle = "#C895A6";
+        //   context.lineWidth = 3;
+        //   context.stroke();
+        //   context.closePath();
+        // }, 150);
       }
 
       // play pause contolling function

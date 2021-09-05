@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  #main {
+    width: 95vw;
+    max-width: 1300px;
+    margin: auto;
+  }
+
+  /* canvas bars styling */
+
+  canvas {
+    /* border: 1px solid; */
+    margin: 150px auto 50px;
+  }
+
+  /* controllers styling */
+  #audio-controllers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #sound,
+  #forward {
+    border: 1px solid #a4b7bb;
+    border-radius: 50px;
+    width: 60px;
+    height: 40px;
+    background: transparent;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+
+  #sound img,
+  #forward img {
+    width: 25px;
+    height: 25px;
+  }
+  #play-pause {
+    border: 1px solid #a4b7bb;
+    border-radius: 10px;
+    background: transparent;
+    border-radius: 100px;
+    width: 100px;
+    height: 70px;
+    cursor: pointer;
+  }
+  #play-pause img {
+    width: 50px;
+    height: 50px;
+  }
