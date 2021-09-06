@@ -2,7 +2,7 @@ let canvas = document.getElementById("canvas-bars");
 let context = canvas.getContext("2d");
 var changingLength = 1;
 canvas.width = 1300;
-canvas.height = 300;
+canvas.height = 400;
 let btn_icon = document.getElementById("ctrl-icon");
 let play_pause = document.getElementById("play-pause");
 //   let audio = new Audio();
@@ -17,8 +17,8 @@ var X = 5;
 var Y = [];
 
 for (let i = 0; i <= 130; i++) {
-  Y.push(Math.floor(Math.random() * 50) + 10);
-  height.push(Math.floor(Math.random() * 100) + 60);
+  Y.push(Math.floor(Math.random() * 80) + 10);
+  height.push(Math.floor(Math.random() * 200) + 100);
 }
 
 for (let i = 0; i <= 130; i++) {
@@ -34,7 +34,7 @@ nameTag(48, 0, "#11D122", "Introduction");
 nameTag(205, 0, "#22DD8C", "one_six");
 nameTag(905, 0, "#1A00B8", "Profile");
 nameTag(1048, 30, "#926666", "Rapport Building-Empathy");
-nameTag(1109, 0, "#67A543", "Rapport Building- Energy");
+nameTag(1112, 0, "#67A543", "Rapport Building-Energy");
 
 // filleing the bars colors w.r.t change
 function fillBar(val) {
@@ -85,14 +85,14 @@ function nameTag(X, Y, backgroungColor, note) {
   //Direction line for tag
   context.beginPath();
   context.moveTo(notePosition, Y + 20);
-  context.lineTo(notePosition, 80);
+  context.lineTo(notePosition, 100);
   context.strokeStyle = backgroungColor;
   context.stroke();
   context.closePath();
 
   // Circlular point at the Bottom of tag
   context.beginPath();
-  context.arc(notePosition, 80, 5, 0, Math.PI * 2);
+  context.arc(notePosition, 100, 5, 0, Math.PI * 2);
   context.fillStyle = backgroungColor;
   context.fill();
   context.closePath();
