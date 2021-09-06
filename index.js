@@ -72,15 +72,12 @@ function nameTag(X, Y, backgroungColor, note) {
   let tagWidth = note.length * 6.6;
   let notePosition = X + tagWidth / 2;
 
-  //creating rectangle box
-  context.fillStyle = backgroungColor;
+  // Circlular point at the Bottom of tag
   context.beginPath();
-  context.fillRect(X, Y, tagWidth, 20);
-
-  //Text inside the Rectangle box
-  context.fillStyle = "#fff";
-  context.font = "10pt bold";
-  context.fillText(note, X + 5, Y + 15);
+  context.arc(notePosition, 100, 5, 0, Math.PI * 2);
+  context.fillStyle = backgroungColor;
+  context.fill();
+  context.closePath();
 
   //Direction line for tag
   context.beginPath();
@@ -90,12 +87,15 @@ function nameTag(X, Y, backgroungColor, note) {
   context.stroke();
   context.closePath();
 
-  // Circlular point at the Bottom of tag
-  context.beginPath();
-  context.arc(notePosition, 100, 5, 0, Math.PI * 2);
+  //creating rectangle box
   context.fillStyle = backgroungColor;
-  context.fill();
-  context.closePath();
+  context.beginPath();
+  context.fillRect(X, Y, tagWidth, 20);
+
+  //Text inside the Rectangle box
+  context.fillStyle = "#fff";
+  context.font = "10pt bold";
+  context.fillText(note, X + 5, Y + 15);
 }
 
 // jumping to clicked bars
