@@ -2,7 +2,7 @@ let canvas = document.getElementById("canvas-bars");
 let context = canvas.getContext("2d");
 var changingLength = 1;
 canvas.width = 1300;
-canvas.height = 400;
+canvas.height = 600;
 let btn_icon = document.getElementById("ctrl-icon");
 let play_pause = document.getElementById("play-pause");
 //   let audio = new Audio();
@@ -17,7 +17,7 @@ var X = 5;
 var Y = [];
 
 for (let i = 0; i <= 130; i++) {
-  Y.push(Math.floor(Math.random() * 80) + 10);
+  Y.push(Math.floor(Math.random() * 80) + 100);
   height.push(Math.floor(Math.random() * 200) + 100);
 }
 
@@ -74,7 +74,7 @@ function nameTag(X, Y, backgroungColor, note) {
 
   // Circlular point at the Bottom of tag
   context.beginPath();
-  context.arc(notePosition, 100, 5, 0, Math.PI * 2);
+  context.arc(notePosition, 220, 5, 0, Math.PI * 2);
   context.fillStyle = backgroungColor;
   context.fill();
   context.closePath();
@@ -82,7 +82,7 @@ function nameTag(X, Y, backgroungColor, note) {
   //Direction line for tag
   context.beginPath();
   context.moveTo(notePosition, Y + 20);
-  context.lineTo(notePosition, 100);
+  context.lineTo(notePosition, 220);
   context.strokeStyle = backgroungColor;
   context.stroke();
   context.closePath();
